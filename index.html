@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Four Voices — a poetry workshop</title>
+  <meta name="description" content="Read your poems through the rhythms and root languages of Heaney, Gorman, Dylan and Bilston." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120f0c'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23e0b45c' text-anchor='middle'%3E4V%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#voices" aria-label="Four Voices home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M6 26c0-9 5-15 14-18 2 9-3 16-10 17" />
+          <path d="M9 23c3-4 7-7 11-9" />
+        </svg>
+      </span>
+      <span class="brand-text">
+        <strong>Four Voices</strong>
+        <em>a poetry workshop</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <button class="nav-btn is-active" data-view="voices">Voices</button>
+      <button class="nav-btn" data-view="workshop">Workshop</button>
+      <button class="nav-btn" data-view="roots">Roots</button>
+      <button class="nav-btn" data-view="about">Method</button>
+    </nav>
+
+    <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+        <circle cx="12" cy="12" r="3.2" />
+        <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" />
+      </svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- ============================== VOICES ============================== -->
+    <section class="view is-active" id="view-voices" aria-labelledby="voicesTitle">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Four ways to make a line</p>
+          <h1 id="voicesTitle">Borrow a rhythm.<br /><span class="accent">Keep your own words.</span></h1>
+          <p class="lede">
+            Read your draft through the ears of Seamus Heaney, Amanda Gorman, Bob Dylan
+            and Brian Bilston — their beats, their pauses, and the older languages hiding
+            inside their diction.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" data-goto="workshop">Open the workshop</button>
+            <button class="btn ghost" id="surpriseBtn">Hear a voice</button>
+          </div>
+          <p class="hero-foot">No account. No cloud. Your draft stays in this browser.</p>
+        </div>
+        <div class="hero-mark" aria-hidden="true">
+          <span class="hero-count">04</span>
+          <span class="hero-rule"></span>
+          <span class="hero-label">voices<br />one workshop</span>
+        </div>
+      </div>
+
+      <div class="voice-grid" id="voiceGrid"></div>
+
+      <div class="principles">
+        <div class="principle">
+          <span class="p-num">01</span>
+          <h3>Rhythm is a signature</h3>
+          <p>Heaney counts spade-strokes. Gorman counts breaths. Dylan rides a fourteener. Bilston keeps strict time while saying something small.</p>
+        </div>
+        <div class="principle">
+          <span class="p-num">02</span>
+          <h3>Every word has a passport</h3>
+          <p>Old English ground, Norse weather, Irish mud, Latin law, Greek form, Norman French manners, Hebrew prophecy. Diction is a history.</p>
+        </div>
+        <div class="principle">
+          <span class="p-num">03</span>
+          <h3>The coach reads your draft</h3>
+          <p>Not generic advice. It scans your lines, names your rhymes, digs your roots, and tells you which voice you are closest to — and why.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== WORKSHOP ============================== -->
+    <section class="view" id="view-workshop" aria-label="Workshop">
+      <div class="workshop">
+        <section class="pane editor-pane">
+          <div class="pane-head">
+            <div>
+              <h2>Your draft</h2>
+              <p class="sub" id="draftSub">a private page</p>
+            </div>
+            <div class="stat-strip" id="statStrip"></div>
+          </div>
+          <textarea id="draft" spellcheck="true" aria-label="Your poem"
+            placeholder="Begin here. One line about a room you know, one about the weather outside it, one that is a lie…"></textarea>
+          <div class="editor-foot">
+            <div class="sample-btns" id="sampleBtns"></div>
+            <div class="editor-actions">
+              <button class="text-btn" id="copyBtn">Copy</button>
+              <button class="text-btn" id="clearBtn">Clear</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="pane readout-pane">
+          <div class="pane-head">
+            <div>
+              <h2>Read-out</h2>
+              <p class="sub">approximate, and happy to be argued with</p>
+            </div>
+          </div>
+          <div class="segmented" id="readoutTabs" role="tablist">
+            <button class="seg is-active" data-tab="scan" role="tab">Scan</button>
+            <button class="seg" data-tab="sound" role="tab">Sound</button>
+            <button class="seg" data-tab="roots" role="tab">Roots</button>
+            <button class="seg" data-tab="echoes" role="tab">Echoes</button>
+          </div>
+          <div class="readout-body" id="readoutBody"></div>
+        </aside>
+
+        <aside class="pane coach-pane">
+          <div class="pane-head">
+            <div>
+              <h2>Workshop coach</h2>
+              <p class="sub" id="coachSub">offline · reads your draft</p>
+            </div>
+            <button class="icon-btn small" id="clearChatBtn" title="Clear conversation" aria-label="Clear conversation">↺</button>
+          </div>
+          <div class="lens-row" id="lensRow"></div>
+          <div class="chat-log" id="chatLog" aria-live="polite"></div>
+          <div class="chips" id="chips"></div>
+          <form class="composer" id="composer">
+            <textarea id="chatInput" rows="1" placeholder="Ask about the draft…" aria-label="Message the coach"></textarea>
+            <button type="submit" class="send-btn" id="sendBtn" aria-label="Send">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7">
+                <path d="m4 12 15-7-4 15-3.5-6.5L4 12Z" />
+              </svg>
+            </button>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================== ROOTS ============================== -->
+    <section class="view" id="view-roots" aria-labelledby="rootsTitle">
+      <div class="roots-head">
+        <p class="kicker">The languages under the language</p>
+        <h1 id="rootsTitle">Every word has a passport.</h1>
+        <p class="lede">
+          English is a collision of older languages. Change the root stock and you change
+          the temperature of the poem. Search the hoard, or start with a family.
+        </p>
+      </div>
+
+      <div class="root-census" id="rootCensus"></div>
+
+      <div class="root-langs" id="rootLangs"></div>
+
+      <div class="root-tools">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" />
+          </svg>
+          <input id="rootSearch" type="search" placeholder="Look up a word — loam, justice, jubilee…" aria-label="Search the root lexicon" />
+        </div>
+        <div class="root-filter" id="rootFilter"></div>
+      </div>
+
+      <div class="root-results" id="rootResults"></div>
+      <p class="fineprint">
+        A working hoard, not the Oxford English Dictionary. Etymologies are simplified and
+        sometimes contested; treat them as prompts, not proofs.
+      </p>
+    </section>
+
+    <!-- ============================== ABOUT ============================== -->
+    <section class="view" id="view-about" aria-labelledby="aboutTitle">
+      <div class="prose">
+        <p class="kicker">Method</p>
+        <h1 id="aboutTitle">How this reads you.</h1>
+        <p class="lede">
+          Four Voices is a workshop, not an oracle. It listens for the things a good reader
+          notices first — where the beat falls, where the line turns, which older language a
+          word came from — and then it asks you to make one deliberate change.
+        </p>
+
+        <h2>The four lenses</h2>
+        <p>
+          <strong>Heaney</strong> for weight and ground: four or five stresses, monosyllables,
+          a caesura where the tool strikes. <strong>Gorman</strong> for breath and public
+          architecture: long lines, anaphora, the tricolon. <strong>Dylan</strong> for propulsion:
+          the fourteener, the rhyme as engine, the plain line that refuses. <strong>Bilston</strong>
+          for friction: strict form, supermarket diction, deadpan feeling.
+        </p>
+
+        <h2>The engine, honestly</h2>
+        <p>
+          Syllables and stress are estimated from spelling and a working dictionary of common
+          words. Rhymes are approximate sound families. Etymology is a hand-built lexicon of a
+          few hundred words, with suffix guesses for the rest. This is a <em>second ear</em>, not
+          a substitute for yours. When the machine and your ear disagree, the ear wins.
+        </p>
+        <p>
+          The coach is deterministic: it reads the analysis of your actual draft and responds to
+          what you ask. If you add a model key in Settings, free-form chat is sent to that model
+          instead; the draft and analysis go with it. Nothing is sent anywhere unless you turn
+          that on.
+        </p>
+
+        <h2>Privacy</h2>
+        <p>
+          Your draft, conversation and settings live in this browser's local storage. There is no
+          server, no account and no analytics. Clear the draft to remove it.
+        </p>
+
+        <h2>On imitation</h2>
+        <p>
+          The "pastiche" in each voice drawer is original writing in the manner of that poet —
+          not a quotation. Imitating a living poet's style for practice is old and honourable;
+          publishing a close imitation as your own voice is neither. Steal the rhythm, not the
+          life.
+        </p>
+
+        <h2>Keys</h2>
+        <ul class="keys">
+          <li><kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> — send a message</li>
+          <li><kbd>Esc</kbd> — close a drawer or dialog</li>
+          <li><kbd>1</kbd>–<kbd>4</kbd> — jump between sections (when not typing)</li>
+        </ul>
+
+        <p class="fineprint">
+          Built as a single-page workshop. Deep thanks to the poets, living and dead, whose
+          work taught the engine what to listen for.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== VOICE DRAWER ============================== -->
+  <div class="drawer" id="voiceDrawer" hidden>
+    <div class="drawer-scrim" data-close-drawer></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Poet voice">
+      <div id="drawerBody"></div>
+    </aside>
+  </div>
+
+  <!-- ============================== SETTINGS ============================== -->
+  <div class="modal" id="settingsModal" hidden>
+    <div class="modal-scrim" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="modal-head">
+        <h2 id="settingsTitle">Settings</h2>
+        <button class="icon-btn small" data-close-modal aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label class="switch">
+            <input type="checkbox" id="useLive" />
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+            <span>Use a live language model for open-ended chat</span>
+          </label>
+          <p class="field-note">
+            Off by default. The offline coach already reads your draft. Turn this on only if you
+            want free-form conversation, and use a key you are willing to keep in this browser.
+          </p>
+        </div>
+        <div class="field">
+          <label for="apiBase">API base</label>
+          <input id="apiBase" type="url" placeholder="https://api.openai.com/v1" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="apiModel">Model</label>
+          <input id="apiModel" type="text" placeholder="gpt-4o-mini" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="apiKey">API key</label>
+          <input id="apiKey" type="password" placeholder="sk-…" autocomplete="off" />
+          <p class="field-note">Stored in local storage only. Any OpenAI-compatible endpoint works.</p>
+        </div>
+        <div class="modal-actions">
+          <button class="btn ghost" data-close-modal>Cancel</button>
+          <button class="btn primary" id="saveSettings">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <p style="padding:2rem;font-family:Georgia,serif;color:#efe7da;background:#120f0c">
+      Four Voices needs JavaScript to read your draft.
+    </p>
+  </noscript>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

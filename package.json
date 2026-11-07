@@ -1,0 +1,11 @@
+{
+  "name": "four-voices",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A poetry workshop for four voices: Heaney, Gorman, Dylan, Bilston.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/engine.test.mjs"
+  }
+}
