@@ -1,5 +1,7 @@
 # Four Voices
 
+**Live:** <https://rayfoolshs.github.io/four-voices/>
+
 A local-first poetry workshop that reads your draft through the rhythms and root
 languages of **Seamus Heaney**, **Amanda Gorman**, **Bob Dylan** and
 **Brian Bilston** — then talks with you about how to make it your own.
